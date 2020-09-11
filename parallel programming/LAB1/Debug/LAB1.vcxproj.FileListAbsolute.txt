@@ -1,0 +1,2 @@
+C:\Users\user\AVT_813_5SEM\parallel programming\LAB1\Debug\LAB1.exe
+C:\Users\user\AVT_813_5SEM\parallel programming\LAB1\Debug\LAB1.pdb
