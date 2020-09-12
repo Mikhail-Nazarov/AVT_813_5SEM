@@ -1,0 +1,214 @@
+ 
+\documentclass[12pt]{article}
+%%% Работа с русским языком
+
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в фомулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+
+%%% Дополнительная работа с математикой
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%Листинг кода
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\graphicspath{}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+%Задание параметров страницы
+% в преамбуле
+\usepackage{caption} 
+\usepackage[left=1.5cm,right=1cm,
+top=1cm,bottom=1cm,bindingoffset=0cm]{geometry}
+
+
+\usepackage[T2A]{fontenc}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{misccorr}
+\usepackage{graphicx}
+\usepackage{cancel}
+\graphicspath{ {images/} }
+\usepackage{amsmath}
+\usepackage{ulem}
+\textheight=24cm 
+\textwidth=16cm 
+\oddsidemargin=0pt
+\topmargin=-1.5cm 
+\parindent=24pt 
+\parskip=0pt 
+\tolerance=2000 
+\flushbottom     
+
+
+\begin{document}
+	
+	\begin{titlepage}
+		\begin{center}
+			\large
+			МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ\\ РОССИЙСКОЙ ФЕДЕРАЦИИ \\
+			\vspace{0.05cm}
+			ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ\\ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ \\ ВЫСШЕГО ОБРАЗОВАНИЯ 
+			
+			\vspace{0.25cm}
+			
+			НОВОСИБИРСКИЙ ГОСУДАРСТВЕННЫЙ ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ
+			\vspace{0.5cm}
+			
+			
+			Кафедра Автоматизированных Систем Управления
+			\vfill
+			
+			
+			\textbf{ОТЧЁТ ПО ЛАБОРАТОРНОЙ РАБОТЕ №1}\\[2mm]
+			\textbf{по основам теории управления}\\[2mm]
+			\textbf{Математическое моделирование динамических систем}\\[3mm]
+			\vspace{0.1cm}
+		\end{center}
+		\vfill
+		\newlength{\ML}
+		\settowidth{\ML}{«\underline{\hspace{0.7cm}}» \underline{\hspace{2cm}}}
+		\hfill\begin{minipage}{0.3\textwidth}
+			Выполнил:\\
+			Студент гр. АВТ-813, АВТФ \\
+			
+			{\it Чернаков} \\
+			{\it Кирилл Олегович}\\
+			
+		\end{minipage}%
+		\bigskip
+		
+		\hfill\begin{minipage}{0.3\textwidth}
+			Проверил:\\
+			к.т.н., Доцент, заведующий каф. АСУ \\
+			{\it Достовалов} \\
+			{\it Дмитрий Николаевич}
+		\end{minipage}%
+		\vfill
+		
+		\begin{center}
+			Новосибирск, 2020 г.
+		\end{center}
+	\end{titlepage}  
+	\tableofcontents
+	\newpage
+	
+	\definecolor{mygreen}{rgb}{0,0.6,0}
+	\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+	\definecolor{mymauve}{rgb}{0.63,0.082,0.082}
+	
+	\lstset{ %
+		backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+		basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+		breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+		breaklines=true,                 % sets automatic line breaking
+		captionpos=b,                    % sets the caption-position to bottom
+		commentstyle=\color{mygreen},    % comment style
+		deletekeywords={...},            % if you want to delete keywords from the given language
+		escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+		extendedchars=\true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+		frame=false,                    % adds a frame around the code
+		keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+		keywordstyle=\color{blue},       % keyword style
+		language=C++,                 % the language of the code
+		morekeywords={*,...},            % if you want to add more keywords to the set
+		numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+		numbersep=5pt,                   % how far the line-numbers are from the code
+		numberstyle=\tiny\color{black}, % the style that is used for the line-numbers
+		rulecolor=\color{white},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+		showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+		showstringspaces=false,          % underline spaces within strings only
+		showtabs=false,                  % show tabs within strings adding particular underscores
+		stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+		stringstyle=\color{mymauve},     % string literal style
+		tabsize=4,                       % sets default tabsize to 2 spaces
+		title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+	}
+	
+	\section{Постановка задачи}
+	\begin{enumerate} 
+		\item Локализовать корни с помощью  построения графика (Desmos)	
+		\item Разработать программную реализацию трех методов уточнения корней:
+		\begin{enumerate} 
+			\item Ньютона,
+			\item простых итераций,
+			\item метода заданного в таблице вариантов.
+		\end{enumerate}
+		\item Произвести вычисления с различной точностью и сравнить количество итераций для нахождения корней различными методами.	
+	\end{enumerate}
+	\newpage  
+	
+	\section{Аналитическое решение задачи}
+
+		\begin{equation}
+			\begin{split}
+			
+				x\prime \prime +x\prime =t, x(0)=x\prime (0)=0 \\
+				x\rightarrow X(p) \\
+				x\prime\rightarrow pX(p) \\
+				x\prime\prime\rightarrow p^{2}X(p) \\
+				t\rightarrow\frac{1}{p^{2}} \\
+				p^{2}X(p)+pX(p)=\frac{1}{p^{2}} \\
+				p^{4}X(p)+p^{3}X(p)=1 \\
+				X(p)=\frac{1}{p^{4}+p^{3}}=\frac{1}{p^{3}(p+1)} \\
+			\end{split}
+		\end{equation}
+
+	\newpage 
+	
+	\section{Структурные схемы в Matlab}
+	
+	\newpage 
+	
+	\section{Полученные графики}
+	\begin{figure}[h]
+%		\center{\includegraphics[scale=0.5]{1.png}}
+		\caption{Контрольный пример}
+	\end{figure}
+	\newpage 
+	
+	\section{Выводы по задаче}
+	
+	\newpage 
+	
+	\section{Структурные схемы для примера 2}
+	
+	\newpage 
+	
+	\section{Графики}
+	
+	\newpage 
+	
+	\section{Заключение}
+	Исходя из расчётов программы можно сделать вывод о том, что меньше всего итераций занял метод Ньютона за ним следует метод половинного деления и в конце метод простых итераций. 
+	\newpage
+	
+	\section{Начальные приближения}
+	Исходя из построенного графика найдём необходимые отрезки для поиска корней уравнения. Всего в уравнении 3 корня это можно узнать по пересечению графика c осью абсцисс в точках:
+	\begin{enumerate} 
+		\item $x1 = 2.843$
+		\item $x2 = 0.693$
+		\item $x3 = -2.537$
+	\end{enumerate}
+	Рассмотрим интервалы для каждого корня (брать интервалы будем, опираясь на изменение знака функции на концах отрезка и на наличие единственного корня в этом отрезке):
+	\begin{enumerate} 
+		\item $[2 ; 10000]$
+		\item $[0 ;1]$
+		\item $[-3 ; -2]$
+	\end{enumerate} 
+	\newpage
+	
+	
+	
+\end{document}
