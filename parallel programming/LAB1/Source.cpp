@@ -3,31 +3,113 @@
 #include <stdlib.h>
 #include "pthread.h"
 #include <conio.h>
+#include <string>
+#include <chrono>
+#include <vector>
+
 using namespace std;
 #pragma comment(lib, "pthreadVCE2.lib")
-void* square(void* num);
-void threadSquaredGenerator(int number);
+void scanDoubleWithMessage(double*, string);
+void scanThreadsNumber(int*);
+int getIntervalsNumber(double, double, double);
+double getThirdOrderSum(double, double);
+void* getSubIntervalResult(void*);
+double integrationFunction(double);
+double thirdOrderNewtonCotesIntegral(int, double, double, double);
+void driver();
+
+struct arg_struct {
+	double step;
+	double left;
+	int subIntervalNumber;
+	int subIntervalSize;
+};
 
 int main() 
-{
-	for (int i = 0; i < 4; i++) {
-		int number = i;
-		threadSquaredGenerator(number);
+{	
+	do {
+		driver();
+	} while (_getch() != EOF);
+	
+}
+
+void driver() {
+	int threadsNumber = 1;
+	double left = 0, right = 0, step = 0;
+
+	scanDoubleWithMessage(&left, "Enter left integration limit: ");
+	scanDoubleWithMessage(&right, "Enter right integration limit: ");
+	scanDoubleWithMessage(&step, "Enter integration step: ");
+	scanThreadsNumber(&threadsNumber);
+	
+	auto start = std::chrono::system_clock::now();
+	cout << "Result: " << thirdOrderNewtonCotesIntegral(threadsNumber, left, right, step) << endl;
+	auto end = std::chrono::system_clock::now();
+	cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << endl;
+}
+
+double thirdOrderNewtonCotesIntegral(int threadsNumber, double left, double right, double step) {
+	double result = 0;
+	int intervalsNumber = 0, thirdOrderCn = 8, subIntervalSize = 0;
+	vector<pthread_t> threads = {};
+	intervalsNumber = getIntervalsNumber(left, right, step);
+	subIntervalSize = ceil(intervalsNumber / threadsNumber);
+
+	for (int i = 0; i < threadsNumber; i++) {
+		struct arg_struct* args = new arg_struct();
+		args->subIntervalNumber = i;
+		args->subIntervalSize = subIntervalSize;
+		args->step = step;
+		args->left = left;
+		threads.push_back(pthread_t());
+		pthread_create(&threads[i], NULL, getSubIntervalResult, (void*)args);
 	}
-	_getch();
+	for (int i = 0; i < threads.size(); i++) {
+		double* subResult = new double(0);
+		pthread_join(threads[i], (void**)&subResult);
+		result += *subResult;
+	}
+
+	result *= step / thirdOrderCn;
+	return result;
 }
 
-void threadSquaredGenerator(int number) {
-	int* numberPtr = &number;
-	pthread_t thread;
-	pthread_create(&thread, NULL, square, numberPtr);
-	pthread_join(thread, (void**)&numberPtr);
-	cout << *numberPtr << endl;
+void* getSubIntervalResult(void* arguments) {
+	struct arg_struct* args = (struct arg_struct*)arguments;
+	double* subResult = new double(0);
+	for (int i = 0; i < args->subIntervalSize; i++) {
+		*subResult += getThirdOrderSum(args->left + (args->subIntervalNumber * args->subIntervalSize + i) * args->step, args->step / 3);
+	}
+	return subResult;
 }
 
-void* square(void* number)
-{
-	int* num = (int*)number;
-	int* square = new int( (*num) * (*num) );
-	return square;
+double getThirdOrderSum(double left, double step) {
+	vector<int> thirdOrderTable = { 1, 3, 3, 1 };
+	double sum = 0;
+	for (int i = 0; i < thirdOrderTable.size(); i++) {
+		sum += integrationFunction(left + i * step) * thirdOrderTable[i];
+	}
+	return sum;
+}
+
+int getIntervalsNumber(double left, double right, double step) {
+	int intervalsNumber = ceil(abs(right - left) / step);
+	return intervalsNumber;
+}
+
+double integrationFunction( double x ) {
+	return 1 / (sqrt(pow(x, 3) + 1));
+}
+
+void scanDoubleWithMessage(double* number, string message) {
+	cout << message;
+	cin >> *number;
+}
+
+void scanThreadsNumber(int* threadsNumber) {
+	cout << "Enter threads number from 1 to 8: ";
+	cin >> *threadsNumber;
+	if (*threadsNumber < 1 || *threadsNumber > 8) {
+		*threadsNumber = 1;
+	}
 }

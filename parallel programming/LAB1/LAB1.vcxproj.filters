@@ -20,13 +20,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pthread.h">
+    <ClInclude Include="semaphore.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="sched.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="semaphore.h">
+    <ClInclude Include="pthread.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
