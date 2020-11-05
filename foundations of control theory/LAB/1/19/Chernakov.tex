@@ -83,6 +83,10 @@ top=1cm,bottom=1cm,bindingoffset=0cm]{geometry}
 			Выполнил:\\
 			Студент гр. АВТ-813, АВТФ \\
 			
+			{\it Кинчаров} \\
+			{\it Данил Дмитриевич}\\
+			{\it Пайхаев} \\
+			{\it Алексей Евгеньевич} \\
 			{\it Чернаков} \\
 			{\it Кирилл Олегович}\\
 			
@@ -135,80 +139,230 @@ top=1cm,bottom=1cm,bindingoffset=0cm]{geometry}
 		tabsize=4,                       % sets default tabsize to 2 spaces
 		title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 	}
-	
-	\section{Постановка задачи}
-	\begin{enumerate} 
-		\item Локализовать корни с помощью  построения графика (Desmos)	
-		\item Разработать программную реализацию трех методов уточнения корней:
-		\begin{enumerate} 
-			\item Ньютона,
-			\item простых итераций,
-			\item метода заданного в таблице вариантов.
-		\end{enumerate}
-		\item Произвести вычисления с различной точностью и сравнить количество итераций для нахождения корней различными методами.	
-	\end{enumerate}
-	\newpage  
+
+	\section{Цель работы}
 	
 	\section{Аналитическое решение задачи}
-
-		\begin{equation}
-			\begin{split}
-			
-				x\prime \prime +x\prime =t, x(0)=x\prime (0)=0 \\
-				x\rightarrow X(p) \\
-				x\prime\rightarrow pX(p) \\
-				x\prime\prime\rightarrow p^{2}X(p) \\
-				t\rightarrow\frac{1}{p^{2}} \\
-				p^{2}X(p)+pX(p)=\frac{1}{p^{2}} \\
-				p^{4}X(p)+p^{3}X(p)=1 \\
-				X(p)=\frac{1}{p^{4}+p^{3}}=\frac{1}{p^{3}(p+1)} \\
-			\end{split}
-		\end{equation}
-
+	\subsection{Вариант - 19}	
+	$
+	\\
+		x’ ’ +x’ =t, x(0)=x’ (0)=0 \\
+		x\rightarrow X(p) \\
+		x’\rightarrow pX(p) \\
+		x’’\rightarrow p^{2}X(p) \\
+		t\rightarrow\frac{1}{p^{2}} \\
+		p^{2}X(p)+pX(p)=\frac{1}{p^{2}} \\
+		p^{4}X(p)+p^{3}X(p)=1 \\
+		X(p)=\frac{1}{p^{4}+p^{3}}=\frac{1}{p^{3}(p+1)} \\
+		X(p)=\frac{p^{2}-p+1}{p^{3}}-\frac{1}{p+1}=1-t+\frac{t^{2}}{2}-exp(-t) \\
+	$
 	\newpage 
-	
+	 
+			\subsection{Вариант - 8}	
+		\begin{figure}[h]
+		\center{\includegraphics[scale=0.42]{8/1.jpg}}
+	%	\caption{Структурная схема -- ДУ относительно старшей производной $x’’=t-x’$}
+	\end{figure}	
+		\clearpage
+				\subsection{Вариант - 15}	
+	\begin{figure}[h]
+		\center{\includegraphics[scale=0.15]{15/6.jpg}}
+		%	\caption{Структурная схема -- ДУ относительно старшей производной $x’’=t-x’$}
+	\end{figure}	
+			\clearpage
 	\section{Структурные схемы в Matlab}
 	
-	\newpage 
+	\begin{figure}[h]
+		\center{\includegraphics[scale=0.42]{4.png}}
+		\caption{Структурная схема -- ДУ относительно старшей производной $x’’=t-x’$}
+	\end{figure}
+
+	\begin{figure}[h]
+	\center{\includegraphics[scale=0.5]{15/4.png}}
+	\caption{Структурная схема 15 -- ДУ относительно старшей производной}
+\end{figure}
+
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.5]{8/5.png}}
+	\caption{Структурная схема 8 -- ДУ относительно старшей производной}
+\end{figure}
+
+
+	\begin{figure}[h]
+		\center{\includegraphics[scale=0.45]{5.png}}
+		\caption{Структурная схема -- уравнение движения $x(t)=1-t+\frac{t^{2}}{2}-exp(-t)$}
+	\end{figure}
+
+	\begin{figure}[h]
+	\center{\includegraphics[scale=0.5]{15/5.png}}
+	\caption{Структурная схема 15 -- уравнение движения}
+\end{figure}
 	
+	\begin{figure}[h]
+	\center{\includegraphics[scale=0.5]{8/6.png}}
+	\caption{Структурная схема 8 -- уравнение движения}
+\end{figure}	
+	
+	\newpage 
+	\clearpage
 	\section{Полученные графики}
 	\begin{figure}[h]
-%		\center{\includegraphics[scale=0.5]{1.png}}
-		\caption{Контрольный пример}
+		\center{\includegraphics[scale=0.25]{1.png}}
+		\caption{Полученный результат -- ДУ относительно старшей производной $x’’=t-x’$}
 	\end{figure}
+
+	\begin{figure}[h]
+		\center{\includegraphics[scale=0.25]{2.png}}
+		\caption{Полученный результат --  уравнение движения $x(t)=1-t+\frac{t^{2}}{2}-exp(-t)$}
+	\end{figure}
+
+	\begin{figure}[h]
+	\center{\includegraphics[scale=0.25]{3.png}}
+	\caption{Полученный результат --  19 сравнение уравнения движения и ДУ относительно старшей производной}
+\end{figure}
+
+	\begin{figure}[h]
+	\center{\includegraphics[scale=0.4]{8/2.png}}
+	\caption{Полученный результат -- 8 ДУ относительно старшей производной}
+\end{figure}
+
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.4]{8/4.png}}
+	\caption{Полученный результат --  8 уравнение движения}
+\end{figure}
+
+	\begin{figure}[h]
+	\center{\includegraphics[scale=0.4]{8/3.png}}
+	\caption{Полученный результат --  8 сравнение уравнения движения и ДУ относительно старшей производной}
+\end{figure}
+
+	\begin{figure}[h]
+	\center{\includegraphics[scale=0.3]{15/1.png}}
+	\caption{Полученный результат -- 15 ДУ относительно старшей производной}
+\end{figure}
+
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.3]{15/2.png}}
+	\caption{Полученный результат --  15 уравнение движения}
+\end{figure}
+
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.3]{15/3.png}}
+	\caption{Полученный результат --  15 сравнение уравнения движения и ДУ относительно старшей производной}
+\end{figure}
+
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.45]{6.png}}
+	\caption{Полученный результат --  8 график относительной погрешности}
+\end{figure}
+
+
 	\newpage 
-	
+		\clearpage
 	\section{Выводы по задаче}
+	В ходе работы была построена и исследована динамическая система двумя способами: аналитическим решением диф. уравнений и моделированием в Matlab. Сравним полученные результаты с помощью отношения аналитического решениея к численному решению, получим уравнение, график которого близок к единице. Сравним полученные результаты с помощью разности аналитического решениея и численного, получим уравнение, график которого близок к нулю. На основании полученных результатов можно говорить о достоверности решения. 
+	\newpage 
+		\clearpage
+	\section{Пример 2}
+	\subsection{Структурная схема}
+	\begin{figure}[h]
+		\center{\includegraphics[scale=0.6]{структурная схема для 2 примера.png}}
+		%\caption{Полученный результат --  8 график относительной погрешности}
+	\end{figure}
+	\clearpage
+ 	\subsection{Графики}
+ 	\begin{figure}[h]
+ 		\center{\includegraphics[scale=1]{теорреш1.png}}
+ 		\caption{Полученный результат -- x1 теоретическое решение}
+ 	\end{figure}
+ \begin{figure}[h]
+ 	\center{\includegraphics[scale=1]{теорреш2.png}}
+ 	\caption{Полученный результат -- x2 теоретическое решение}
+ \end{figure}
+
+\begin{figure}[h]
+	\center{\includegraphics[scale=1]{аналитрешх1.png}}
+	\caption{Полученный результат -- x1 аналитическое решение}
+\end{figure}
+\begin{figure}[h]
+	\center{\includegraphics[scale=1]{аналитрешх2.png}}
+	\caption{Полученный результат -- x2 аналитическое решение}
+\end{figure}
+
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.5]{относпогрешх1.png}}
+	\caption{Полученный результат -- x1 график относительной погрешности решение}
+\end{figure}
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.4]{относпогрешх2.png}}
+	\caption{Полученный результат -- x2 график относительной погрешности решение}
+\end{figure}
+	\clearpage
+	 \subsection{Вывод}
+	 	В ходе работы была исследована система ДУ с помощью двух способов: аналитическим решением дифференциальных уравнений и методом моделирования в Matlab. В результате были получены графики относительной погрешности, которая находится в пределах нуля. Отклонение от нуля на обоих графиках составляет примерно ${10^-}^6$, что является незначительным.
+	\clearpage
+	\section{Дополнительное задание}
+	
+	\subsection{Аналитическое решение}
+	
+	\begin{figure}[h]
+		\center{\includegraphics[scale=0.2]{7.jpg}}
+		%\caption{Полученный результат --  8 график относительной погрешности}
+	\end{figure}
+	\begin{figure}[h]
+	\center{\includegraphics[scale=0.15]{8.jpg}}
+	%\caption{Полученный результат --  8 график относительной погрешности}
+\end{figure}
+	\begin{figure}[h]
+	\center{\includegraphics[scale=0.15]{9.jpg}}
+	%\caption{Полученный результат --  8 график относительной погрешности}
+\end{figure}
+	\newpage 
+		\clearpage
+	\subsection{Структурная схема}
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.5]{7.png}}
+	%\caption{Полученный результат --  8 график относительной погрешности}
+\end{figure}
+		\clearpage
+	\subsection{Полученные графики -- x1}
+	
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.5]{решение 1.png}}
+	\caption{Полученный результат -- x1 теоретическое решение}
+\end{figure}
+
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.55]{решение 1.png}}
+	\caption{Полученный результат -- x1 аналитическое решение}
+\end{figure}
+
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.4]{относительное первое решение.png}}
+	\caption{Полученный результат -- x1 график относительной погрешности решение}
+\end{figure}
+		\clearpage
+		\subsection{Полученные графики -- x2}
+		
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.5]{решение 2.png}}
+	\caption{Полученный результат -- x2 теоретическое решение}
+\end{figure}
+
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.5]{решение 2.png}}
+	\caption{Полученный результат -- x2 аналитическое решение}
+\end{figure}
+
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.35]{относительное решение 2.png}}
+	\caption{Полученный результат -- x2 график относительной погрешности решение}
+\end{figure}
+	\clearpage
+		\subsection{Выводы по задаче}
+		
+	В ходе работы была исследована система ДУ с помощью двух способов: аналитическим решением дифференциальных уравнений и методом моделирования в Matlab. В результате были получены графики относительной погрешности, которая находится в пределах нуля. Отклонение от нуля на обоих графиках составляет примерно ${10^-}^4$, что является незначительным.	
 	
 	\newpage 
-	
-	\section{Структурные схемы для примера 2}
-	
-	\newpage 
-	
-	\section{Графики}
-	
-	\newpage 
-	
-	\section{Заключение}
-	Исходя из расчётов программы можно сделать вывод о том, что меньше всего итераций занял метод Ньютона за ним следует метод половинного деления и в конце метод простых итераций. 
-	\newpage
-	
-	\section{Начальные приближения}
-	Исходя из построенного графика найдём необходимые отрезки для поиска корней уравнения. Всего в уравнении 3 корня это можно узнать по пересечению графика c осью абсцисс в точках:
-	\begin{enumerate} 
-		\item $x1 = 2.843$
-		\item $x2 = 0.693$
-		\item $x3 = -2.537$
-	\end{enumerate}
-	Рассмотрим интервалы для каждого корня (брать интервалы будем, опираясь на изменение знака функции на концах отрезка и на наличие единственного корня в этом отрезке):
-	\begin{enumerate} 
-		\item $[2 ; 10000]$
-		\item $[0 ;1]$
-		\item $[-3 ; -2]$
-	\end{enumerate} 
-	\newpage
-	
-	
-	
+		
 \end{document}
