@@ -1,0 +1,13 @@
+directories:
+  output: dist
+  buildResources: build
+appId: danil.sord
+mac:
+  category: app.electron
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  runAfterFinish: false
+electronVersion: 8.1.1
